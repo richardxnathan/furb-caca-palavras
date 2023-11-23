@@ -137,25 +137,36 @@ public class CacaPalavras {
 
         do {
 
+            // Esses dois laços for para percorrer o caça palavras
             for (int i = 0; i < 10; i++) {
                 for (int j = 0; j < 5; j++) {
+
+                    // Aqui eu pego a primeira linha e coluna da matriz PALAVRAS, nela contém a
+                    // primeira palavra com a palavra em mãos chamamos o metodo charAt para pegar a
+                    // primeira letra palavra e comparar com a letra do mapa
                     if (palavras[linhaMatrizPalavra][0].charAt(0) == mapa[i][j]) {
 
+                        // Aqui eu pego o tamanho da palavra e vejo se tem espaço no caça palavras pra
+                        // aquela palavra nessa
                         if (palavras[linhaMatrizPalavra][0].length() <= (mapa[0].length - j)) {
 
+                            // Aqui eu chamo o método pra analisar se tem a palavra toda dentro do caça
+                            // se tiver vai retornar true, se retornar true entra no if, e aí a gente 
+                            // marca a segunda coluna da matriz palavras, que é o lugar pra ficar salvo
+                            // as coordenadas da primeira letra ou a mensagem de que não encontrou
                             if (analisaDaEsquerdaPraDireita(palavras, mapa, i, j, linhaMatrizPalavra)) {
                                 palavras[linhaMatrizPalavra][1] = "[" + i + "," + j + "] - "
                                         + palavras[linhaMatrizPalavra][0];
                             }
 
-                        } else if ((palavras[linhaMatrizPalavra][0].length() - mapa[0].length) <= 0) {
+                        } else if (palavras[linhaMatrizPalavra][0].length() <= (j + 1)) {
 
                             if (analisaDaDireitaPraEsquerda(palavras, mapa, i, j, linhaMatrizPalavra)) {
                                 palavras[linhaMatrizPalavra][1] = "[" + i + "," + j + "] - "
                                         + palavras[linhaMatrizPalavra][0];
                             }
 
-                        } else if (palavras[linhaMatrizPalavra][0].length() <= (mapa.length - (i + 1))) {
+                        } else if (palavras[linhaMatrizPalavra][0].length() <= (mapa.length - i)) {
 
                             if (analisaDeCimaPraBaixo(palavras, mapa, i, j, linhaMatrizPalavra)) {
                                 palavras[linhaMatrizPalavra][1] = "[" + i + "," + j + "] - "
